@@ -8,27 +8,47 @@ namespace WorldGen
 {
   public class Generator
   {
-    public void GenerateTerrain(TileType[,] grid)
+    private double lakeModifier = 0.01;
+    private Random random;
+
+    public Generator()
     {
-      GenerateGround(grid);
-      GenerateLakes(grid);
+      random = new Random(DateTime.UtcNow.Millisecond);
     }
 
-    public void GenerateGround(TileType[,] grid)
+    public void GenerateTerrain(TileType[,] grid)
     {
-      //just grass for the time being
       for (int i = 0; i < grid.GetLength(0); i++)
       {
         for (int j = 0; j < grid.GetLength(1); j++)
         {
-          //TODO: replace with real logic
-          grid[i, j] = TileType.GRASS;
+          if (!(grid[i, j] != TileType.GRASS))
+          {
+            grid[i, j] = TileType.GRASS;
+          }
+          
+          var rand = random.NextDouble();
+          if (rand < lakeModifier)
+          {
+            GenerateLake(grid, i, j);
+          }
         }
       }
     }
-    public void GenerateLakes(TileType[,] grid)
-    {
 
+    public void GenerateLake(TileType[,] grid, int x, int y)
+    {
+      //just a 3X3 rectangle for now
+      for (int i = x; i < x+3; i++)
+      {
+        for (int j = y; j < y+3; j++)
+        {
+          if (j < grid.GetLength(1) && i < grid.GetLength(0))
+          {
+            grid[i, j] = TileType.WATER;
+          }
+        }
+      }
     }
   }
 }

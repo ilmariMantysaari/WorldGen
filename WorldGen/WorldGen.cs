@@ -15,6 +15,7 @@ namespace WorldGen
     public Grid grid;
     public Camera camera;
     public static Viewport viewport;
+    private Generator generator;
 
     public WorldGen()
     {
@@ -22,7 +23,7 @@ namespace WorldGen
       camera = new Camera();
       Content.RootDirectory = "Content";
       grid = new Grid();
-      Generator generator = new Generator();
+      generator = new Generator();
       generator.GenerateTerrain(grid.grid);
       
     }
@@ -59,6 +60,13 @@ namespace WorldGen
     {
       if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
         Exit();
+
+      //regenarate terrain
+      if (Keyboard.GetState().IsKeyDown(Keys.Space))
+      {
+        grid.grid = new TileType[100, 100];
+        generator.GenerateTerrain(grid.grid);
+      }
 
       camera.Update();
 
