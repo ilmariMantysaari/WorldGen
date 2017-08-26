@@ -1,0 +1,6 @@
+
+grid loppuun
+
+generaattorin uudelleenkäytettävyys
+	ei saa riippua liika esim gridistä
+	interfacet esim tähän
