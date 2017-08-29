@@ -4,9 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/green_tile.png</File>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/blue_tile.png</File>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/grey_tile.png</File>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/yellow_tile.png</File>
+    <File>C:/Users/Käyttäjä/Desktop/OC/WorldGen/WorldGen/Content/green_tile.png</File>
+    <File>C:/Users/Käyttäjä/Desktop/OC/WorldGen/WorldGen/Content/blue_tile.png</File>
+    <File>C:/Users/Käyttäjä/Desktop/OC/WorldGen/WorldGen/Content/grey_tile.png</File>
+    <File>C:/Users/Käyttäjä/Desktop/OC/WorldGen/WorldGen/Content/yellow_tile.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,6 @@ namespace WorldGen
           {
             grid[i, j] = TileType.GRASS;
           }
-          
           var rand = random.NextDouble();
           if (rand < lakeModifier)
           {
@@ -39,11 +39,12 @@ namespace WorldGen
     public void GenerateLake(TileType[,] grid, int x, int y)
     {
       //just a 3X3 rectangle for now
-      for (int i = x; i < x+3; i++)
+      decimal lakeSize = 1;
+      for (int i = x - (int)(lakeSize/2); i < x + (lakeSize / 2); i++)
       {
-        for (int j = y; j < y+3; j++)
+        for (int j = y - (int)(lakeSize / 2); j < y + (lakeSize / 2); j++)
         {
-          if (j < grid.GetLength(1) && i < grid.GetLength(0))
+          if (j < grid.GetLength(1) && i < grid.GetLength(0) && i >= 0 && j >= 0 )
           {
             grid[i, j] = TileType.WATER;
           }

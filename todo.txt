@@ -1,6 +1,11 @@
 
-grid loppuun
+docker-compose
+joku kälin tyyppinen
+    
+
+perlin noise
+
+esineitä kartalle
 
 generaattorin uudelleenkäytettävyys
 	ei saa riippua liika esim gridistä
-	interfacet esim tähän
