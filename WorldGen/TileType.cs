@@ -9,6 +9,7 @@ namespace WorldGen
 {
   public enum TileType
   {
-    GRASS,WATER, SAND, ROCK
+    GRASS,WATER, SAND, ROCK,
+    PERLIN1, PERLIN2, PERLIN3, PERLIN4, PERLIN5, PERLIN6, PERLIN7, PERLIN8, PERLIN9
   }
 }

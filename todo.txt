@@ -1,6 +1,8 @@
 
-grid loppuun
+järvielle muita muotoja
 
 generaattorin uudelleenkäytettävyys
 	ei saa riippua liika esim gridistä
 	interfacet esim tähän
+	
+	
