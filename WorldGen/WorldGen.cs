@@ -19,8 +19,6 @@ namespace WorldGen
     public Camera camera;
     public static Viewport viewport;
     private Generator generator;
-    private Random rand;
-    private PerlinOptions options;
 
     public WorldGen()
     {
@@ -29,7 +27,7 @@ namespace WorldGen
       Content.RootDirectory = "Content";
       grid = new Grid();
       generator = new Generator();
-      options = new PerlinOptions
+      generator.options = new PerlinOptions
       {
         amplitude = 0.5f,
         emphasis = 0.5f,
@@ -37,10 +35,8 @@ namespace WorldGen
         octaves = 5,
         persistence = 0.25f
       };
-      rand = new Random(1);
-      generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
-      
-      
+      generator.rand = new Random(1);
+      generator.Generate(grid, Generator.GenType.PERLIN);
     }
 
     protected override void Initialize()
@@ -87,82 +83,81 @@ namespace WorldGen
       if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
         Exit();
       //regenarate terrain
-      //
       if (Keyboard.GetState().IsKeyDown(Keys.Space))
       {
         //rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.W))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.amplitude += 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.amplitude += 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.S))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.amplitude -= 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.amplitude -= 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.E))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.frequency += 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.frequency += 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.D))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.frequency -= 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.frequency -= 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.R))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.persistence += 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.persistence += 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.F))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.persistence -= 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.persistence -= 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.T))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.emphasis += 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.emphasis += 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.G))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.emphasis -= 0.01f;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.emphasis -= 0.01f;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.Y))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.octaves += 1;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.octaves += 1;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
       if (Keyboard.GetState().IsKeyDown(Keys.H))
       {
-        rand = new Random(1);
+        generator.rand = new Random(1);
         grid.grid = new TileType[100, 100];
-        options.octaves -= 1;
-        generator.Generate(grid, Generator.GenType.PERLIN, rand, options);
+        generator.options.octaves -= 1;
+        generator.Generate(grid, Generator.GenType.PERLIN);
       }
 
       //TODO: print the current values to UI

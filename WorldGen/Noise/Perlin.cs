@@ -14,7 +14,6 @@ namespace WorldGen.Noise
   /// </summary>
   public class PerlinOptions
   {
-    //TODO method overload using this class
     public int octaves;
     public float amplitude;
     public float frequency;
@@ -59,7 +58,6 @@ namespace WorldGen.Noise
       }
 
       //TODO: implement emphasis
-      
       for (var octave = 0; octave < octaves; octave++){
         Parallel.For(0, width * height, (index) => {
             var x = index % width;

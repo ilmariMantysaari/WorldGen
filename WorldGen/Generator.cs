@@ -11,38 +11,31 @@ namespace WorldGen
   public class Generator
   {
     private double lakeModifier = 0.01;
-    private Random random;
+    public Random rand;
     public enum GenType {PERLIN, TERRAIN};
     public Dictionary<double, TileType> tileMap;
+    public PerlinOptions options;
 
-    public Generator()
-    {
-      random = new Random(DateTime.UtcNow.Millisecond);
-    }
-
-    public void Generate(Grid grid, GenType type, Random rand = null, PerlinOptions opt = null)
+    public void Generate(Grid grid, GenType type)
     {
       switch(type){
         case GenType.PERLIN:
-          grid.grid = GeneratePerlin(grid.grid.GetLength(0), grid.grid.GetLength(1), grid.tileMap, rand, opt);
+          grid.grid = GeneratePerlin(grid.grid.GetLength(0), grid.grid.GetLength(1), grid.tileMap);
           break;
-        case GenType.TERRAIN:
+        /*case GenType.TERRAIN:
           GenerateTerrain(grid.grid);
-          break;
+          break;*/
       }
     }
 
-    private TileType[,] GeneratePerlin(int x, int y, Dictionary<double, TileType> tileMap, Random rand = null, PerlinOptions opt = null)
+    private TileType[,] GeneratePerlin(int x, int y, Dictionary<double, TileType> tileMap)
     {
       if (rand == null)
       {
         rand = new Random();
       }
       var perlin = new Perlin(rand);
-      //var perlinGrid = perlin.GeneratePerlinArray(x, y, octaves:5, frequency: 1f,
-        //                                                amplitude: 0.5f, persistence: 0.5f, emphasis: 0.5f);
-
-      var perlinGrid = perlin.GeneratePerlinArray(x, y, opt);
+      var perlinGrid = perlin.GeneratePerlinArray(x, y, options);
 
       var grid = new TileType[x, y];
 
@@ -54,7 +47,7 @@ namespace WorldGen
       }
       return grid;
     }
-
+    /*
     private void GenerateTerrain(TileType[,] grid)
     {
       for (int i = 0; i < grid.GetLength(0); i++){
@@ -80,7 +73,7 @@ namespace WorldGen
           }
         }
       }
-    }
+    }*/
 
     //finds tiletype from the tilemap dictionary with a floating point value
     private TileType GetTile(double value, Dictionary<double, TileType> tileMap)
