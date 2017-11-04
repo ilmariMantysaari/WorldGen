@@ -21,7 +21,7 @@ namespace WorldGen
     {
       Bounds = WorldGen.viewport.Bounds;
       Rotation = 0f;
-      Zoom = 1f;
+      Zoom = 0.075f;
       Position = Vector2.Zero;
       Center = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
       debugCamera = true;
@@ -53,7 +53,7 @@ namespace WorldGen
     {
       Vector2 movement = Vector2.Zero;
       //TODO: These are just for debugging
-     // int moveSpeed = ((int)(this.moveSpeed * (Zoom)));
+      int moveSpeed = ((int)(this.moveSpeed /(Zoom/2)));
       if (Keyboard.GetState().IsKeyDown(Keys.Up))
       {
         movement.X = Transform.Up.X * moveSpeed;
@@ -76,11 +76,11 @@ namespace WorldGen
       }
       if (Keyboard.GetState().IsKeyDown(Keys.NumPad1))
       {
-        Zoom += 0.02f;
+        Zoom += 0.02f*Zoom;
       }
       if (Keyboard.GetState().IsKeyDown(Keys.NumPad2))
       {
-        Zoom -= 0.02f;
+        Zoom -= 0.02f*Zoom;
         if (Zoom <= 0)
         {
           Zoom = 0;

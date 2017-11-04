@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 järvielle muita muotoja
 
 generaattorin uudelleenkäytettävyys
@@ -6,3 +7,15 @@ generaattorin uudelleenkäytettävyys
 	interfacet esim tähän
 	
 	
+=======
+docker-compose
+joku kälin tyyppinen
+    
+
+perlin noise
+
+esineitä kartalle
+
+generaattorin uudelleenkäytettävyys
+	ei saa riippua liika esim gridistä
+>>>>>>> 0bef17a2f3d321f7469bcdc4ea373679fcbf2dd7

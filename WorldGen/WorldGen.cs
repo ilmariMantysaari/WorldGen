@@ -81,13 +81,13 @@ namespace WorldGen
       base.Draw(gameTime);
       spriteBatch.End();
     }
-   
+    
     protected override void Update(GameTime gameTime)
     {
       if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
         Exit();
-
       //regenarate terrain
+      //
       if (Keyboard.GetState().IsKeyDown(Keys.Space))
       {
         //rand = new Random(1);
