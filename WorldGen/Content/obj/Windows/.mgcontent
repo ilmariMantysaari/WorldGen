@@ -4,10 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/green_tile.png</File>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/blue_tile.png</File>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/grey_tile.png</File>
-    <File>D:/Rojektit/WorldGen/WorldGen/Content/yellow_tile.png</File>
     <File>D:/Rojektit/WorldGen/WorldGen/Content/perlin_tile1.png</File>
     <File>D:/Rojektit/WorldGen/WorldGen/Content/perlin_tile2.png</File>
     <File>D:/Rojektit/WorldGen/WorldGen/Content/perlin_tile3.png</File>

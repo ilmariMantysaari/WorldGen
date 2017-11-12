@@ -50,25 +50,23 @@ namespace WorldGen.Noise
     /// <param name="emphasis">Number towards which the values are weighted</param>
     /// <returns></returns>
     public float[,] GeneratePerlinArray(int width, int height, int octaves = 1, float frequency = 1f,
-                                        float amplitude = 1f, float? persistence = null, float emphasis = 0.5f)
+                                        float amplitude = 1f, float persistence = 1f, float emphasis = 0.5f)
     {
       var perlinArray = new float[width,height];
-      if (persistence == null){
-        persistence = amplitude;
-      }
-
-      //TODO: implement emphasis
+      emphasis /= 50;
+      
       for (var octave = 0; octave < octaves; octave++){
         Parallel.For(0, width * height, (index) => {
             var x = index % width;
             var y = index / width;
             var noise = this.Noise(x * frequency / width, y * frequency / height);
-          noise *= amplitude;// + (emphasis - noise);
+            noise *= amplitude;
+            noise += emphasis;
             perlinArray[x,y] += noise;
           }
         );
         frequency *= 2;
-        amplitude *= (float)persistence;
+        amplitude *= persistence;
       }
       return perlinArray;
     }

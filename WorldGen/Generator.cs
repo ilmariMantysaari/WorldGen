@@ -10,77 +10,40 @@ namespace WorldGen
 {
   public class Generator
   {
-    private double lakeModifier = 0.01;
     public Random rand;
-    public enum GenType {PERLIN, TERRAIN};
-    public Dictionary<double, TileType> tileMap;
+    public IOrderedEnumerable<KeyValuePair<double, TileType>> tileMap;
     public PerlinOptions options;
 
-    public void Generate(Grid grid, GenType type)
+    public Generator(Random rand, PerlinOptions opts, Dictionary<double, TileType> tiles)
     {
-      switch(type){
-        case GenType.PERLIN:
-          grid.grid = GeneratePerlin(grid.grid.GetLength(0), grid.grid.GetLength(1), grid.tileMap);
-          break;
-        /*case GenType.TERRAIN:
-          GenerateTerrain(grid.grid);
-          break;*/
-      }
+      options = opts;
+      tileMap = tiles.OrderByDescending(x => x.Key);
+      this.rand = rand;
     }
 
-    private TileType[,] GeneratePerlin(int x, int y, Dictionary<double, TileType> tileMap)
+    public TileType[,] Generate(Grid grid)
     {
-      if (rand == null)
-      {
-        rand = new Random();
-      }
+      var x = grid.grid.GetLength(0);
+      var y = grid.grid.GetLength(1);
       var perlin = new Perlin(rand);
       var perlinGrid = perlin.GeneratePerlinArray(x, y, options);
 
-      var grid = new TileType[x, y];
+      var tiles = new TileType[x, y];
 
-      //map the float values to tiles
-      for (int i = 0; i < grid.GetLength(0); i++){
-        for (int j = 0; j < grid.GetLength(1); j++){
-          grid[i, j] = GetTile(perlinGrid[i,j], tileMap);
+      //maps the float values to tiles
+      for (int i = 0; i < tiles.GetLength(0); i++){
+        for (int j = 0; j < tiles.GetLength(1); j++){
+          tiles[i, j] = GetTile(perlinGrid[i,j], grid.tileMap);
         }
       }
-      return grid;
+      return tiles;
     }
-    /*
-    private void GenerateTerrain(TileType[,] grid)
-    {
-      for (int i = 0; i < grid.GetLength(0); i++){
-        for (int j = 0; j < grid.GetLength(1); j++){
-          if (!(grid[i, j] != TileType.GRASS)){
-            grid[i, j] = TileType.GRASS;
-          }
-          var rand = random.NextDouble();
-          if (rand < lakeModifier){
-            GenerateLake(grid, i, j);
-          }
-        }
-      }
-    }
-
-    public void GenerateLake(TileType[,] grid, int x, int y)
-    {
-      //just a 3X3 rectangle for now
-      for (int i = x; i < x+3; i++){
-        for (int j = y; j < y+3; j++){
-          if (j < grid.GetLength(1) && i < grid.GetLength(0)){
-            grid[i, j] = TileType.WATER;
-          }
-        }
-      }
-    }*/
 
     //finds tiletype from the tilemap dictionary with a floating point value
     private TileType GetTile(double value, Dictionary<double, TileType> tileMap)
     {
       //FIXME: better mapping function
-      var ordered = tileMap.OrderByDescending(x => x.Key);
-      foreach (var tile in ordered){
+      foreach (var tile in this.tileMap){
         if (tile.Key < Math.Abs(value)){
           return tile.Value;
         }

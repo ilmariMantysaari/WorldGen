@@ -23,7 +23,7 @@ namespace WorldGen
       grid = new TileType[100,100];
       tileSize = 64;
       tileMap = new Dictionary<double, TileType>();
-      /*
+      
       tileMap.Add( 0.0, TileType.PERLIN1);
       tileMap.Add( 0.1, TileType.PERLIN2);
       tileMap.Add( 0.2, TileType.PERLIN3);
@@ -32,13 +32,7 @@ namespace WorldGen
       tileMap.Add( 0.6, TileType.PERLIN6);
       tileMap.Add( 0.7, TileType.PERLIN7);
       tileMap.Add( 0.8, TileType.PERLIN8);
-      tileMap.Add( 0.9, TileType.PERLIN9);*/
-      
-      tileMap.Add(0.0, TileType.WATER);
-      tileMap.Add(0.25, TileType.SAND);
-      tileMap.Add(0.50, TileType.GRASS);
-      tileMap.Add(0.75, TileType.ROCK);
-
+      tileMap.Add( 0.9, TileType.PERLIN9);
     }
     
     public void Draw(SpriteBatch batch)
